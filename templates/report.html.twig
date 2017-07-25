@@ -1,0 +1,41 @@
+{#
+  submission
+  form
+#}
+<hr><br>
+Всего к выплате работникам: XXX руб.
+<hr>
+<div class="report-kub">
+  <h5>Учет всех посетителей по программам</h5>
+  <table class="all_tables">
+    <tr>
+      <td><strong>№</strong></td>
+      <td><strong>Наименование</strong></td>
+      <td><strong>Продолжительность</strong></td>
+      <td><strong>Количество человек</strong></td>
+      <td><strong>Количество программ</strong></td>
+    </tr>
+    {% for programm in data.all_programm %}
+    {% if programm.long_time %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ programm.title }}</td>
+      <td class="text-center">{{ programm.long_time }}</td>
+      <td class="text-center">{{ programm.kolvo_people }}</td>
+      <td class="text-center">{{ programm.summa }}</td>
+    </tr>
+    {% else %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ programm.title }}</td>
+      <td class="text-center">---</td>
+      <td class="text-center">{{ programm.kolvo_people }}</td>
+      <td class="text-center">{{ programm.summa }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </table>
+    <strong>Проведено: {{data.vsego_programm}} программ</strong><br>
+    <strong>Посещаемость: {{data.vsego_people}} человек</strong>
+
+  </div>
